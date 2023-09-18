@@ -1,0 +1,47 @@
+name: Build and Push Docs
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build_docs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        pip install .[docs]
+
+    - name: Build Docs
+      run: |
+        make build-docs
+    - name: Remove all files except docs
+      run: |
+        ALL_EXCLUDE_SITE=$(ls | grep -v site)
+        rm -rf $ALL_EXCLUDE_SITE
+        mv site/* .
+        rm -rf site
+    - name: Commit docs
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add .
+        git commit -m "Update docs"
+    - name: Push docs branch
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: docs
+        force: true
+      if: success()
+

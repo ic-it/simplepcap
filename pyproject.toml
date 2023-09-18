@@ -22,7 +22,12 @@ dev = [
 
   "mkdocs==1.5.2",
   "mkdocstrings[python]==0.23.0",
-  "mkdocs-material==9.3.1"
+  "mkdocs-material==9.3.1",
+]
+docs = [
+  "mkdocs==1.5.2",
+  "mkdocstrings[python]==0.23.0",
+  "mkdocs-material==9.3.1",
 ]
 
 [tool.flake8]
