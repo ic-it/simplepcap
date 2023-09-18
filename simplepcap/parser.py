@@ -43,6 +43,11 @@ class ParserIterator(ABC):
     def __next__(self) -> Packet:
         raise NotImplementedError
 
+    @property
+    @abstractmethod
+    def position(self) -> int:
+        raise NotImplementedError
+
 
 class Parser(ABC):
     """Abstract class for parsers.
@@ -58,6 +63,8 @@ class Parser(ABC):
             True if the file is open
         itearators:
             List of iterators over the packets in the file
+            > Note: When iterator raises `StopIteration` it is removed from the list
+
 
     Example:
         1. Recommended way to use the parser is to use ["with"](https://peps.python.org/pep-0343/) statement.
@@ -175,16 +182,11 @@ class Parser(ABC):
     @property
     @abstractmethod
     def is_open(self) -> bool:
-        """Return True if the file is open"""
         raise NotImplementedError
 
     @property
     @abstractmethod
     def iterators(self) -> list[ParserIterator]:
-        """Return a list of iterators over the packets in the file.
-
-        > Note: When iterator raises `StopIteration` it is removed from the list
-        """
         raise NotImplementedError
 
     @abstractmethod
