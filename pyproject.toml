@@ -1,0 +1,34 @@
+[project]
+name = "simplepcap"
+version = "0.0.1"
+description = "A simple pcap library for Python"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE.txt"}
+authors = [
+  {name = "Illia Chaban", email = "ic-it@mail.com" }
+]
+
+dependencies = [
+  
+]
+
+
+[project.optional-dependencies]
+dev = [
+  "black==23.9.1", 
+  "flake8==6.1.0", 
+  "Flake8-pyproject==1.2.3",
+
+  "mkdocs==1.5.2",
+  "mkdocstrings[python]==0.23.0",
+  "mkdocs-material==9.3.1"
+]
+
+[tool.flake8]
+max-line-length = 120
+count = true
+
+[tool.black]
+line-length = 120
+
