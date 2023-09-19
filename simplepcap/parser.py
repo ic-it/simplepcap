@@ -1,9 +1,10 @@
 """This module contains the abstract classes for parsers and parser iterators
 
-The `SomeParser` is used to denote the implementation. You should replace it with the name of the parser you want to use.
+The `SomeParser` is used to denote the implementation. You should replace it with the name of
+the parser you want to use.
 
 Main Idea of the Parser is to provide an easy way to iterate over the packets in a pcap file.
-To ensure safe opening and closing of the file use ["with"](https://peps.python.org/pep-0343/) statement or 
+To ensure safe opening and closing of the file use ["with"](https://peps.python.org/pep-0343/) statement or
 call the `open()` and `close()` methods. (preferred way is to use ["with"](https://peps.python.org/pep-0343/) statement)
 
 """
@@ -44,60 +45,96 @@ class ParserIterator(ABC):
 
 
 class Parser(ABC):
-    """Abstract class for parsers
+    """Abstract class for parsers.
+    Parser is used to iterate over the packets in a pcap file.
+    Parser supports multiple iterators over the same file. Each iterator has its own position in the file.
 
     Attributes:
         file_path:
             Path to the pcap file
         file_header:
             File header
+        is_open:
+            True if the file is open
+        itearators:
+            List of iterators over the packets in the file
+
+    Example:
+        1. Recommended way to use the parser is to use ["with"](https://peps.python.org/pep-0343/) statement.
+        When you iterate over the parser it load the packets one by one from the file.
+            ``` py
+            from simplepcap import SomeParser
 
 
-    Example 1:
-        ``` py
-        from simplepcap import SomeParser
+            with SomeParser(file_path="file.pcap") as parser:
+                for i, packet in enumerate(parser):
+                    print(i, packet)
+            ```
+
+        2. Not recommended way to use the parser is to open and close the file manually.
+            ``` py
+            from simplepcap import SomeParser
 
 
-        with SomeParser(file_path="file.pcap") as parser:
+            parser = SomeParser(file_path="file.pcap")
+            parser.open()
             for packet in parser:
                 print(packet)
-        ```
+            parser.close()
+            ```
 
-    Example 2:
-        ``` py
-        from simplepcap import SomeParser
-
-
-        parser = SomeParser(file_path="file.pcap")
-        parser.open()
-        for packet in parser:
-            print(packet)
-        parser.close()
-        ```
-
-    Example 3:
-        ``` py
-        from simplepcap import SomeParser
+        3. You can also use the `get_all_packets()` method to get a list of all packets in the file.
+            ``` py
+            from simplepcap import SomeParser
 
 
-        with SomeParser(file_path="file.pcap") as parser:
+            with SomeParser(file_path="file.pcap") as parser:
+                packets = parser.get_all_packets()
+            for packet in packets:
+                print(packet)
+            ```
+
+        4. Not recommended way to use the parser is to open and close the file manually.
+            ``` py
+            from simplepcap import SomeParser
+
+
+            parser = SomeParser(file_path="file.pcap")
+            parser.open()
             packets = parser.get_all_packets()
-        for packet in packets:
-            print(packet)
-        ```
+            parser.close()
+            for packet in packets:
+                print(packet)
+            ```
 
-    Example 4:
-        ``` py
-        from simplepcap import SomeParser
+        5. You can also use many iterators over the same file.
+            ``` py
+            from simplepcap import SomeParser
 
 
-        parser = SomeParser(file_path="file.pcap")
-        parser.open()
-        packets = parser.get_all_packets()
-        parser.close()
-        for packet in packets:
-            print(packet)
-        ```
+            with SomeParser(file_path="file.pcap") as parser:
+                for i, (packet1, packet2) in enumerate(zip(parser, parser)):
+                    print(i, packet1, packet2)
+                print(parser.iterators) # [ParserIterator, ]
+            ```
+        > Note: Each iterator has its own position in the file.
+
+        6. Every iterator has its own position in the file.
+            ``` py
+            from simplepcap import SomeParser
+
+
+            with SomeParser(file_path="file.pcap") as parser:
+                iter1 = iter(parser)
+                iter2 = iter(parser)
+                print(next(iter1)) # packet1
+                print(next(iter1)) # packet2
+                print(next(iter1)) # packet3
+                print(next(iter2)) # packet1
+                print(next(iter2)) # packet2
+                print(next(iter1)) # packet4
+            ```
+        > Note: When iterator raises `StopIteration` it is removed from the list
     """
 
     @abstractmethod
@@ -133,6 +170,21 @@ class Parser(ABC):
     @property
     @abstractmethod
     def file_header(self) -> FileHeader:
+        raise NotImplementedError
+
+    @property
+    @abstractmethod
+    def is_open(self) -> bool:
+        """Return True if the file is open"""
+        raise NotImplementedError
+
+    @property
+    @abstractmethod
+    def iterators(self) -> list[ParserIterator]:
+        """Return a list of iterators over the packets in the file.
+
+        > Note: When iterator raises `StopIteration` it is removed from the list
+        """
         raise NotImplementedError
 
     @abstractmethod

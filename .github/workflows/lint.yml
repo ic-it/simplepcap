@@ -1,0 +1,23 @@
+name: Lint Workflow
+
+on:
+  push:
+    branches:
+        - "*"
+
+jobs:
+  lint:
+    name: Run Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          pip install .[docs]
+      - name: Run make lint
+        run: make lint
