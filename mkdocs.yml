@@ -4,6 +4,7 @@ repo_url: http://github.com/ic-it/simplepcap
 
 theme:
   name: "material"
+  logo: "assets/images/favicon.png"
   icon:
     repo: fontawesome/brands/github-alt
     favicon: images/favicon.png
@@ -41,6 +42,6 @@ plugins:
 
 nav:
   - Home: index.md
+  - Examples: examples.md
   - How-To Guides: how-to-guides.md
   - Reference: reference.md
-  - Examples: examples.md

@@ -114,19 +114,7 @@ class Parser(ABC):
                 print(packet)
             ```
 
-        5. You can also use many iterators over the same file.
-            ``` py
-            from simplepcap import SomeParser
-
-
-            with SomeParser(file_path="file.pcap") as parser:
-                for i, (packet1, packet2) in enumerate(zip(parser, parser)):
-                    print(i, packet1, packet2)
-                print(parser.iterators) # [ParserIterator, ]
-            ```
-        > Note: Each iterator has its own position in the file.
-
-        6. Every iterator has its own position in the file.
+        5. Every iterator has its own position in the file.
             ``` py
             from simplepcap import SomeParser
 

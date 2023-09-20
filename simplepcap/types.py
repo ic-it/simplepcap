@@ -3,7 +3,7 @@ from datetime import datetime
 from simplepcap.enum import LinkType
 
 
-@dataclass
+@dataclass(frozen=True)
 class Version:
     """Version of the pcap file format
 
@@ -29,7 +29,7 @@ class Version:
     minor: int
 
 
-@dataclass
+@dataclass(frozen=True)
 class Reserved:
     """Reserved bytes. Should be 0
 
@@ -52,7 +52,7 @@ class Reserved:
     reserved2: bytes
 
 
-@dataclass
+@dataclass(frozen=True)
 class FileHeader:
     """Pcap file header
 
@@ -92,7 +92,7 @@ class FileHeader:
     fcs_present: bool
 
 
-@dataclass
+@dataclass(frozen=True)
 class PacketHeader:
     """Packet record header
 
@@ -126,7 +126,7 @@ class PacketHeader:
     original_len: int
 
 
-@dataclass
+@dataclass(frozen=True)
 class Packet:
     """Packet
 
