@@ -77,19 +77,25 @@ class FileHeader:
             a 16-bit unsigned value that defines the link layer type of packets in the file.
 
             [Source](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-4-5.18.1)
-        fcs_present: _Frame Cyclic Sequence (FCS) present_.
+        fcs_present: _Frame Check Sequence (FCS) present_.
+            if the "f" bit is set, then the 3 FCS bits provide the number of 16-bit (2 byte) words of FCS that
+            are appended to each packet.
+
+            [Source](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-4-5.20.1)
+        fcs:
             if the "f" bit is set, then the 3 FCS bits provide the number of 16-bit (2 byte) words of FCS that
             are appended to each packet.
 
             [Source](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-4-5.20.1)
     """
 
-    magic: bytes
+    magic: int
     version: Version
     reserved: Reserved
     snap_len: int
     link_type: LinkType
     fcs_present: bool
+    fcs: int
 
 
 @dataclass(frozen=True)

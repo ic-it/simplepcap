@@ -11,6 +11,7 @@ call the `open()` and `close()` methods. (preferred way is to use ["with"](https
 
 from __future__ import annotations
 
+from io import BufferedReader
 from abc import ABC, abstractmethod
 from pathlib import Path
 
@@ -21,8 +22,8 @@ class ParserIterator(ABC):
     """Abstract class for parser iterators. This class is used to iterate over the packets in a pcap file
 
     Parameters:
-        file_path:
-            Path to the pcap file
+        buffered_eader:
+            Buffered reader of the file
         file_header:
             File header
 
@@ -32,7 +33,7 @@ class ParserIterator(ABC):
     """
 
     @abstractmethod
-    def __init__(self, *, file_path: Path, file_header: FileHeader) -> None:
+    def __init__(self, *, buffered_reader: BufferedReader, file_header: FileHeader) -> None:
         raise NotImplementedError
 
     @abstractmethod
@@ -67,10 +68,12 @@ class Parser(ABC):
 
 
     Example:
-        1. Recommended way to use the parser is to use ["with"](https://peps.python.org/pep-0343/) statement.
+        > Note: Replace `SomeParser` with the name of the parser you want to use
+
+        0. Recommended way to use the parser is to use ["with"](https://peps.python.org/pep-0343/) statement.
         When you iterate over the parser it load the packets one by one from the file.
             ``` py
-            from simplepcap import SomeParser
+            from simplepcap.parsers import SomeParser
 
 
             with SomeParser(file_path="file.pcap") as parser:
@@ -78,9 +81,9 @@ class Parser(ABC):
                     print(i, packet)
             ```
 
-        2. Not recommended way to use the parser is to open and close the file manually.
+        0. Not recommended way to use the parser is to open and close the file manually.
             ``` py
-            from simplepcap import SomeParser
+            from simplepcap.parsers import SomeParser
 
 
             parser = SomeParser(file_path="file.pcap")
@@ -90,9 +93,9 @@ class Parser(ABC):
             parser.close()
             ```
 
-        3. You can also use the `get_all_packets()` method to get a list of all packets in the file.
+        0. You can also use the `get_all_packets()` method to get a list of all packets in the file.
             ``` py
-            from simplepcap import SomeParser
+            from simplepcap.parsers import SomeParser
 
 
             with SomeParser(file_path="file.pcap") as parser:
@@ -101,9 +104,9 @@ class Parser(ABC):
                 print(packet)
             ```
 
-        4. Not recommended way to use the parser is to open and close the file manually.
+        0. Not recommended way to use the parser is to open and close the file manually.
             ``` py
-            from simplepcap import SomeParser
+            from simplepcap.parsers import SomeParser
 
 
             parser = SomeParser(file_path="file.pcap")
@@ -114,9 +117,9 @@ class Parser(ABC):
                 print(packet)
             ```
 
-        5. Every iterator has its own position in the file.
+        0. Every iterator has its own position in the file.
             ``` py
-            from simplepcap import SomeParser
+            from simplepcap.parsers import SomeParser
 
 
             with SomeParser(file_path="file.pcap") as parser:
@@ -147,6 +150,14 @@ class Parser(ABC):
 
     @abstractmethod
     def __iter__(self) -> ParserIterator:
+        """Return an iterator over the packets in the file
+
+        Raises:
+            simplepcap.exceptions.FileIsNotOpenError: if the file is not open
+
+        Returns:
+            Iterator over the packets in the file
+        """
         raise NotImplementedError
 
     @abstractmethod
