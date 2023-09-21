@@ -1,5 +1,4 @@
 from io import BufferedReader
-from pathlib import Path
 
 from simplepcap import FileHeader, Packet
 from simplepcap.parser import ParserIterator

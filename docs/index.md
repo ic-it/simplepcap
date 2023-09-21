@@ -11,8 +11,11 @@
     ![Documentation Status](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat)
 ](https://ic-it.github.io/simplepcap/)
 [
+    ![Version](https://img.shields.io/badge/version-0.0.1--alpha-blue)
+](https://github.com/ic-it/simplepcap)
+<!-- [
     ![PyPI version](https://badge.fury.io/py/simplepcap.svg)
-](https://badge.fury.io/py/simplepcap)
+](https://badge.fury.io/py/simplepcap) -->
 
 > Based on [this](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-01.html) PCAP Capture File Format.
 
