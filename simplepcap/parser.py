@@ -22,10 +22,8 @@ class ParserIterator(ABC):
     """Abstract class for parser iterators. This class is used to iterate over the packets in a pcap file
 
     Parameters:
-        buffered_eader:
+        buffered_reader:
             Buffered reader of the file
-        file_header:
-            File header
 
     Attributes:
         position:
@@ -33,7 +31,7 @@ class ParserIterator(ABC):
     """
 
     @abstractmethod
-    def __init__(self, *, buffered_reader: BufferedReader, file_header: FileHeader) -> None:
+    def __init__(self, *, buffered_reader: BufferedReader) -> None:
         raise NotImplementedError
 
     @abstractmethod
@@ -145,6 +143,7 @@ class Parser(ABC):
         Raises:
             simplepcap.exceptions.PcapFileNotFoundError: if the file does not exist
             simplepcap.exceptions.WrongFileHeaderError: if the file header is invalid
+            simplepcap.exceptions.UnsupportedFileVersionError: if the file version is not supported
         """
         raise NotImplementedError
 

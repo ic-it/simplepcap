@@ -40,12 +40,25 @@ class Reserved:
             Some older pcap file writers stored non-zero values in this field.
 
             [Source](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-4-5.12.1)
+
+            > Alternatively, the correction time in seconds between GMT (UTC) and the local
+            > timezone of the following packet header timestamps. Examples: If the timestamps are in GMT (UTC),
+            > thiszone is simply 0. If the timestamps are in Central European time (Amsterdam, Berlin, …) which is
+            > GMT + 1:00, thiszone must be -3600. In practice, time stamps are always in GMT, so thiszone is always 0.
+            >
+            > [Source](https://wiki.wireshark.org/Development/LibpcapFileFormat#global-header)
+
+
         reserved2:
             not used - SHOULD be filled with 0 by pcap file writers, and MUST be ignored by pcap file readers.
             This value was documented by some older implementations as "accuracy of timestamps".
             Some older pcap file writers stored non-zero values in this field.
 
             [Source](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-4-5.14.1)
+
+            > Alternatively, in theory, the accuracy of time stamps in the capture; in practice, all tools set it to 0
+            >
+            > [Source](https://wiki.wireshark.org/Development/LibpcapFileFormat#global-header)
     """
 
     reserved1: bytes
@@ -58,35 +71,31 @@ class FileHeader:
 
     Attributes:
         magic:
-            an unsigned magic number, whose value is either the hexadecimal number `0xA1B2C3D4` or the
-            hexadecimal number `0xA1B23C4D`.
+            used to detect the file format itself and the byte ordering.
+            The writing application writes `0xa1b2c3d4` with it's native byte ordering format into this field.
+            The reading application will read either `0xa1b2c3d4` (identical) or `0xd4c3b2a1` (swapped).
+            If the reading application reads the swapped `0xd4c3b2a1` value,
+            it knows that all the following fields will have to be swapped too.
 
-            [Source](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-4-5.2.1)
+            [Source](https://wiki.wireshark.org/Development/LibpcapFileFormat#global-header)
         version:
             version of the pcap file format
         reserved:
             reserved bytes. Should be 0
-        snap_len:
-            an unsigned value indicating the maximum number of octets captured from each packet.
-            The portion of each packet that exceeds this value will not be stored in the file.
-            This value MUST NOT be zero; if no limit was specified, the value should be a number greater
-            than or equal to the largest packet length in the file.
+        snaplen:
+            the "snapshot length" for the capture (typically 65535 or even more, but might be limited by the user),
+            see: incl_len vs. orig_len below
 
-            [Source](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-4-5.16.1)
+            [Source](https://wiki.wireshark.org/Development/LibpcapFileFormat#global-header)
         link_type:
-            a 16-bit unsigned value that defines the link layer type of packets in the file.
+            link-layer header type, specifying the type of headers at the beginning of the packet
+            (e.g. 1 for Ethernet, see tcpdump.org's link-layer header types page for details);
+            this can be various types such as 802.11, 802.11 with various radio information,
+            PPP, Token Ring, FDDI, etc.
 
-            [Source](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-4-5.18.1)
-        fcs_present: _Frame Check Sequence (FCS) present_.
-            if the "f" bit is set, then the 3 FCS bits provide the number of 16-bit (2 byte) words of FCS that
-            are appended to each packet.
+            [Source](https://wiki.wireshark.org/Development/LibpcapFileFormat#global-header)
 
-            [Source](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-4-5.20.1)
-        fcs:
-            if the "f" bit is set, then the 3 FCS bits provide the number of 16-bit (2 byte) words of FCS that
-            are appended to each packet.
-
-            [Source](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-4-5.20.1)
+            > Note: `network` is a synonym for `link_type`
     """
 
     magic: int
@@ -94,8 +103,6 @@ class FileHeader:
     reserved: Reserved
     snap_len: int
     link_type: LinkType
-    fcs_present: bool
-    fcs: int
 
 
 @dataclass(frozen=True)
@@ -104,27 +111,19 @@ class PacketHeader:
 
     Attributes:
         timestamp:
-            seconds and fraction of a seconds values of a timestamp.
+            Seconds and microseconds when this packet was captured.
 
-            The seconds value is a 32-bit unsigned integer that represents the number of seconds that have elapsed
-            since 1970-01-01 00:00:00 UTC, and the microseconds or nanoseconds value represents the number of
-            microseconds or nanoseconds that have elapsed since that seconds.
-
-            Whether the value represents microseconds or nanoseconds is specified by the magic number in the
-            File Header.
-
-            [Source](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-5-5.2.1)
+            [Source](https://wiki.wireshark.org/Development/LibpcapFileFormat#record-packet-header)
         captured_len:
-            an unsigned value that indicates the number of octets captured from the packet
-            (i.e. the length of the Packet Data field). It will be the minimum value among the Original Packet Length
-            and the snapshot length for the interface (SnapLen, defined in Figure 1).
+            the number of bytes of packet data actually captured and saved in the file.
+            This value should never become larger than orig_len or the snaplen value of the global header.
 
-            [Source](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-5-5.8.1)
+            [Source](https://wiki.wireshark.org/Development/LibpcapFileFormat#record-packet-header)
         original_len:
-            an unsigned value that indicates the actual length of the packet when it was transmitted on the network.
-            It can be different from the Captured Packet Length if the packet has been truncated by the capture process.
+            the length of the packet as it appeared on the network when it was captured.
+            If incl_len and orig_len differ, the actually saved packet size was limited by snaplen.
 
-            [Source](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-5-5.10.1)
+            [Source](https://wiki.wireshark.org/Development/LibpcapFileFormat#record-packet-header)
     """
 
     timestamp: datetime

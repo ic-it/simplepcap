@@ -11,13 +11,15 @@
     ![Documentation Status](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat)
 ](https://ic-it.github.io/simplepcap/)
 [
-    ![Version](https://img.shields.io/badge/version-0.0.1--alpha-blue)
+    ![Version](https://img.shields.io/badge/version-0.1.0--alpha-blue)
 ](https://github.com/ic-it/simplepcap)
 <!-- [
     ![PyPI version](https://badge.fury.io/py/simplepcap.svg)
 ](https://badge.fury.io/py/simplepcap) -->
 
-> Based on [this](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-01.html) PCAP Capture File Format.
+> Based on [this](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-01.html) 
+> and [this](https://wiki.wireshark.org/Development/LibpcapFileFormat#global-header) 
+> PCAP Capture File Format description.
 
 ## About
 Simple PCAP was created to allow the user to focus as much as possible on processing packets stored in 
