@@ -1,6 +1,6 @@
 [project]
 name = "simplepcap"
-version = "0.1.0"
+version = "0.1.1"
 description = "A simple pcap library for Python"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -35,6 +35,8 @@ dev = [
   "mkdocs==1.5.2",
   "mkdocstrings[python]==0.23.0",
   "mkdocs-material==9.3.1",
+
+  "pytest==7.4.2",
 ]
 
 docs = [
@@ -47,6 +49,10 @@ lint = [
   "flake8==6.1.0", 
   "Flake8-pyproject==1.2.3",
   "flake8-function-order==0.0.5",
+]
+
+test = [
+  "pytest==7.4.2",
 ]
 
 [project.urls]

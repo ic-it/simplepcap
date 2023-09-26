@@ -1,3 +1,4 @@
+APP_VERSION=0.1.1
 APP_PATH=simplepcap
 
 # COLORED OUTPUT XD
@@ -43,3 +44,12 @@ build-docs:
 run-docs:
 	@echo "$(INFO) Running docs server..."
 	@mkdocs serve
+
+
+# Update App Version in README.md, pyproject.toml, docs/index.md
+update-version:
+	@echo "$(INFO) Updating app version..."
+	@sed -i 's/version-[0-9]\.[0-9]\.[0-9]--alpha-blue/version-$(APP_VERSION)--alpha-blue/g' README.md
+	@sed -i 's/version = "[0-9]\.[0-9]\.[0-9]"/version = "$(APP_VERSION)"/g' pyproject.toml
+	@sed -i 's/version-[0-9]\.[0-9]\.[0-9]--alpha-blue/version-$(APP_VERSION)--alpha-blue/g' docs/index.md
+	@echo "$(OK) App version updated to $(APP_VERSION)"
