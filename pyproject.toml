@@ -4,9 +4,20 @@ version = "0.1.0"
 description = "A simple pcap library for Python"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {file = "LICENSE.txt"}
+license = {file = "LICENSE"}
+keywords = ["pcap", "development", "networking", "python"]
 authors = [
   {name = "Illia Chaban", email = "ic-it@mail.com" }
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3 :: Only",
 ]
 
 dependencies = [
@@ -37,6 +48,12 @@ lint = [
   "Flake8-pyproject==1.2.3",
   "flake8-function-order==0.0.5",
 ]
+
+[project.urls]
+"Homepage" = "https://ic-it.github.io/simplepcap/"
+"Bug Reports" = "https://github.com/ic-it/simplepcap/issues"
+"Source Code" = "https://github.com/ic-it/simplepcap"
+
 
 [tool.flake8]
 max-line-length = 120
