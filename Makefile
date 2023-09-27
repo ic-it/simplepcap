@@ -1,4 +1,4 @@
-APP_VERSION=0.1.1
+APP_VERSION=0.1.2
 APP_PATH=simplepcap
 APP_TEST_PATH=tests
 
@@ -53,10 +53,11 @@ run-docs:
 	@mkdocs serve
 
 
-# Update App Version in README.md, pyproject.toml, docs/index.md
+# Update App Version in README.md, pyproject.toml, docs/index.md, simplepcap/__init__.py
 update-version:
 	@echo "$(INFO) Updating app version..."
-	@sed -i 's/version-[0-9]\.[0-9]\.[0-9]--alpha-blue/version-$(APP_VERSION)--alpha-blue/g' README.md
+	@sed -i 's/version-[0-9]\.[0-9]\.[0-9]-blue/version-$(APP_VERSION)-blue/g' README.md
 	@sed -i 's/version = "[0-9]\.[0-9]\.[0-9]"/version = "$(APP_VERSION)"/g' pyproject.toml
-	@sed -i 's/version-[0-9]\.[0-9]\.[0-9]--alpha-blue/version-$(APP_VERSION)--alpha-blue/g' docs/index.md
+	@sed -i 's/version-[0-9]\.[0-9]\.[0-9]-blue/version-$(APP_VERSION)-blue/g' docs/index.md
+	@sed -i 's/__version__ = "[0-9]\.[0-9]\.[0-9]"/__version__ = "$(APP_VERSION)"/g' simplepcap/__init__.py
 	@echo "$(OK) App version updated to $(APP_VERSION)"
