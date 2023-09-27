@@ -45,6 +45,7 @@ class DefaultParser(Parser):
         buffered_reader = self.__file_path.open("rb")
         buffered_reader.seek(PCAP_FILE_HEADER_SIZE)
         return DefaultParserIterator(
+            file_path=self.__file_path.as_posix(),
             buffered_reader=buffered_reader,
             remove_iterator_callback=self.__remove_iterator,
         )

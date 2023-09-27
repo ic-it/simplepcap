@@ -11,7 +11,6 @@ call the `open()` and `close()` methods. (preferred way is to use ["with"](https
 
 from __future__ import annotations
 
-from io import BufferedReader
 from abc import ABC, abstractmethod
 from pathlib import Path
 
@@ -31,15 +30,19 @@ class ParserIterator(ABC):
     """
 
     @abstractmethod
-    def __init__(self, *, buffered_reader: BufferedReader) -> None:
-        raise NotImplementedError
-
-    @abstractmethod
     def __iter__(self) -> ParserIterator:
         raise NotImplementedError
 
     @abstractmethod
     def __next__(self) -> Packet:
+        """Return the next packet in the file
+
+        Raises:
+            simplepcap.exceptions.WrongPacketHeaderError: if the packet header is invalid
+            simplepcap.exceptions.IncorrectPacketSizeError: if the packet size is incorrect
+            simplepcap.exceptions.ReadAfterCloseError: if the file is closed and you try to read a packet from it
+            StopIteration: if there are no more packets in the file
+        """
         raise NotImplementedError
 
     @property

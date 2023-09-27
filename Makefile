@@ -1,5 +1,6 @@
 APP_VERSION=0.1.1
 APP_PATH=simplepcap
+APP_TEST_PATH=tests
 
 # COLORED OUTPUT XD
 ccerror	= $(shell tput setaf 1)
@@ -32,6 +33,12 @@ install-dev:
 lint:
 	@echo "$(INFO) Running linters..."
 	@flake8 ./$(APP_PATH)
+
+
+# Run tests
+test:
+	@echo "$(INFO) Running tests..."
+	@pytest -v ./$(APP_TEST_PATH)
 
 
 # Build Docs

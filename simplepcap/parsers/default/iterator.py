@@ -3,6 +3,7 @@ from io import BufferedReader
 from typing import Callable
 
 from simplepcap import Packet, PacketHeader
+from simplepcap.exceptions import IncorrectPacketSizeError, ReadAfterCloseError, WrongPacketHeaderError
 from simplepcap.parser import ParserIterator
 
 PACKET_HEADER_SIZE = 16  # in bytes
@@ -18,12 +19,14 @@ class DefaultParserIterator(ParserIterator):
     def __init__(
         self,
         *,
+        file_path: str,
         buffered_reader: BufferedReader,
         remove_iterator_callback: Callable[[ParserIterator], None] | None = None,
     ) -> None:
         self._buffered_reader: BufferedReader | None = buffered_reader
-        self.__position = 0
+        self.__position = -1
         self.__remove_iterator_callback = remove_iterator_callback or (lambda _: None)
+        self.__file_path = file_path
 
     def __iter__(self) -> ParserIterator:
         return self
@@ -41,22 +44,35 @@ class DefaultParserIterator(ParserIterator):
         return self.__position
 
     def __parse_packet(self) -> Packet | None:
-        assert (
-            self._buffered_reader is not None
-        ), "Unreachable state: buffered reader is None. Read packet from closed file?"
+        if self._buffered_reader is None:
+            raise ReadAfterCloseError(
+                "Attempt to read from closed file",
+                packet_number=self.__position + 1,
+                file_path=self.__file_path,
+            )
         raw_header = self._buffered_reader.read(PACKET_HEADER_SIZE)
         if not raw_header:
             return None
         header = self.__parse_packet_header(raw_header)
         data = self._buffered_reader.read(header.captured_len)
-        assert len(data) == header.captured_len, "Invalid packet size. Invalid file?"
+        if len(data) != header.captured_len:
+            raise IncorrectPacketSizeError(
+                f"Invalid packet size: {len(data)}. Expected {header.captured_len}",
+                packet_number=self.__position + 1,
+                file_path=self.__file_path,
+            )
         return Packet(
             header=header,
             data=data,
         )
 
     def __parse_packet_header(self, raw_header: bytes) -> PacketHeader:
-        assert len(raw_header) == PACKET_HEADER_SIZE, "Invalid header size"
+        if len(raw_header) != PACKET_HEADER_SIZE:
+            raise WrongPacketHeaderError(
+                f"Invalid packet header size: {len(raw_header)}. Expected {PACKET_HEADER_SIZE}",
+                packet_number=self.__position + 1,
+                file_path=self.__file_path,
+            )
         timestamp_sec = int.from_bytes(raw_header[TIMESTAMP_SEC], byteorder="little")
         timestamp_usec = int.from_bytes(raw_header[TIMESTAMP_USEC], byteorder="little")
         return PacketHeader(
