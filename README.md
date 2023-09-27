@@ -8,6 +8,16 @@
     ![IC-IT](https://img.shields.io/badge/IC--IT-2023-blue)
 ](https://github.com/ic-it/)
 [
+    ![License](https://img.shields.io/github/license/ic-it/simplepcap)
+](
+    https://github.com/ic-it/simplepcap/blob/main/LICENSE
+)
+[
+    ![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue)
+](
+    https://www.python.org/downloads/release/python-3100/
+)
+[
     ![Documentation Status](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat)
 ](https://ic-it.github.io/simplepcap/)
 [
