@@ -20,10 +20,6 @@ from .types import Packet, FileHeader
 class ParserIterator(ABC):
     """Abstract class for parser iterators. This class is used to iterate over the packets in a pcap file
 
-    Parameters:
-        buffered_reader:
-            Buffered reader of the file
-
     Attributes:
         position:
             Current position in the file

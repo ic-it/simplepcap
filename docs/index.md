@@ -1,6 +1,6 @@
 # Simple PCAP file parser
 
-![SimplePCAP. Logo Author: @mellin_venera](./docs/assets/images/minilogo.png)  
+![SimplePCAP. Logo Author: @mellin_venera](./assets/images/minilogo.png)  
 [
     ![lint](https://img.shields.io/github/actions/workflow/status/ic-it/simplepcap/lint.yml)
 ](https://github.com/ic-it/simplepcap/actions)
