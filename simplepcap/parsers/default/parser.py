@@ -74,7 +74,7 @@ class DefaultParser(Parser):
         return self.__iterators
 
     def get_all_packets(self) -> list[Packet]:
-        return [packet for packet in self]
+        return list(self)
 
     def open(self) -> None:
         if self.is_open:
