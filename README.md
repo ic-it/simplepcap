@@ -29,8 +29,32 @@ tools for analyzing packages. The library tries to provide the safest possible m
 pip install git+https://github.com/ic-it/simplepcap.git
 ```
 
-## Usage
-Look at the [examples](./examples) folder.
+## Usage example
+### Simple usage
+```python
+from pprint import pprint
+from simplepcap.parsers import DefaultParser
+
+
+with DefaultParser(file_path="./pcaps/eth-1.pcap") as parser:
+    pprint(parser.file_header)
+    for packet in parser:
+        pprint(packet)
+```
+
+### Get all packets
+```python
+from pprint import pprint
+from simplepcap.parsers import DefaultParser
+
+
+with DefaultParser(file_path="./pcaps/eth-1.pcap") as parser:
+    packets = list(parser) # or packets = parser.get_all_packets()
+
+pprint(packets)
+```
+
+Look at the [examples](./examples) folder for more examples.
 
 ## Documentation
 Look at the [docs](https://ic-it.github.io/simplepcap/).
