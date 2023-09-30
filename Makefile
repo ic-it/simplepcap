@@ -1,4 +1,4 @@
-APP_VERSION=0.1.5
+APP_VERSION=0.1.6
 APP_PATH=simplepcap
 APP_TEST_PATH=tests
 
