@@ -1,6 +1,6 @@
 [project]
 name = "simplepcap"
-version = "0.1.7"
+version = "0.1.8"
 description = "A simple pcap library for Python"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -61,6 +61,7 @@ publish = [
 
 [project.urls]
 "Homepage" = "https://ic-it.github.io/simplepcap/"
+"Documentation" = "https://ic-it.github.io/simplepcap/"
 "Bug Reports" = "https://github.com/ic-it/simplepcap/issues"
 "Source Code" = "https://github.com/ic-it/simplepcap"
 

@@ -21,8 +21,8 @@
     ![Documentation Status](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat)
 ](https://ic-it.github.io/simplepcap/)
 [
-    ![Version](https://img.shields.io/badge/version-0.1.7-blue)
-](https://github.com/ic-it/simplepcap)
+    ![PyPI](https://img.shields.io/pypi/v/simplepcap)
+](https://pypi.org/project/simplepcap/)
 
 > Based on [this](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-01.html) 
 > and [this](https://wiki.wireshark.org/Development/LibpcapFileFormat#global-header) 
@@ -35,6 +35,12 @@ tools for analyzing packages. The library tries to provide the safest possible m
 
 
 ## Installation
+### From PyPI
+```bash
+pip install simplepcap
+```
+
+### From GitHub
 ```bash
 pip install git+https://github.com/ic-it/simplepcap.git
 ```
