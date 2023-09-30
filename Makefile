@@ -69,10 +69,3 @@ tag-version:
 	@git tag -a v$(APP_VERSION) -m "Version $(APP_VERSION)"
 	@git push origin v$(APP_VERSION)
 	@echo "$(OK) Version $(APP_VERSION) tagged"
-
-
-# Build the project
-build:
-	@echo "$(INFO) Building project..."
-	@python -m build
-	@echo "$(OK) Project built"
