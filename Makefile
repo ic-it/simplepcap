@@ -61,3 +61,18 @@ update-version:
 	@sed -i 's/version-[0-9]\.[0-9]\.[0-9]-blue/version-$(APP_VERSION)-blue/g' docs/index.md
 	@sed -i 's/__version__ = "[0-9]\.[0-9]\.[0-9]"/__version__ = "$(APP_VERSION)"/g' simplepcap/__init__.py
 	@echo "$(OK) App version updated to $(APP_VERSION)"
+
+
+# Tag the current version
+tag-version:
+	@echo "$(INFO) Tagging version..."
+	@git tag -a v$(APP_VERSION) -m "Version $(APP_VERSION)"
+	@git push origin v$(APP_VERSION)
+	@echo "$(OK) Version $(APP_VERSION) tagged"
+
+
+# Build the project
+build:
+	@echo "$(INFO) Building project..."
+	@python -m build
+	@echo "$(OK) Project built"
