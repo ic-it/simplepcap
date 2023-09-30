@@ -55,6 +55,10 @@ test = [
   "pytest==7.4.2",
 ]
 
+publish = [
+  "build==1.0.3",
+]
+
 [project.urls]
 "Homepage" = "https://ic-it.github.io/simplepcap/"
 "Bug Reports" = "https://github.com/ic-it/simplepcap/issues"
