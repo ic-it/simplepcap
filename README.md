@@ -21,7 +21,7 @@
     ![Documentation Status](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat)
 ](https://ic-it.github.io/simplepcap/)
 [
-    ![Version](https://img.shields.io/badge/version-0.1.6-blue)
+    ![Version](https://img.shields.io/badge/version-0.1.7-blue)
 ](https://github.com/ic-it/simplepcap)
 
 > Based on [this](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-01.html) 

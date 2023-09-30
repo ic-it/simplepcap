@@ -1,4 +1,4 @@
-__version__ = "0.1.6"
+__version__ = "0.1.7"
 
 from .types import Version, Reserved, FileHeader, PacketHeader, Packet
 from .parser import Parser
