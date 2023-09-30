@@ -23,5 +23,7 @@ jobs:
         run: pip install .[publish]
       - name: Build package distributions
         run: make build
-      - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+      - name: Publish
+        uses: pypa/gh-action-pypi-publish@v1.8.6
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
