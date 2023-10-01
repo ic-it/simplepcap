@@ -1,0 +1,2696 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../examples/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.3.1">
+    
+    
+      
+        <title>Reference - Simple PCAP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.046329b4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.85d0ee34.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Simple PCAP" class="md-header__button md-logo" aria-label="Simple PCAP" data-md-component="logo">
+      
+  <img src="../assets/images/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Simple PCAP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="http://github.com/ic-it/simplepcap" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ic-it/simplepcap
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Simple PCAP" class="md-nav__button md-logo" aria-label="Simple PCAP" data-md-component="logo">
+      
+  <img src="../assets/images/favicon.png" alt="logo">
+
+    </a>
+    Simple PCAP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="http://github.com/ic-it/simplepcap" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ic-it/simplepcap
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Examples
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#simplepcap.parser" class="md-nav__link">
+    parser
+  </a>
+  
+    <nav class="md-nav" aria-label="parser">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parser.Parser" class="md-nav__link">
+    Parser
+  </a>
+  
+    <nav class="md-nav" aria-label="Parser">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parser.Parser.__iter__" class="md-nav__link">
+    __iter__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parser.Parser.close" class="md-nav__link">
+    close()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parser.Parser.get_all_packets" class="md-nav__link">
+    get_all_packets()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parser.Parser.open" class="md-nav__link">
+    open()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parser.ParserIterator" class="md-nav__link">
+    ParserIterator
+  </a>
+  
+    <nav class="md-nav" aria-label="ParserIterator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parser.ParserIterator.__next__" class="md-nav__link">
+    __next__()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simplepcap.types" class="md-nav__link">
+    types
+  </a>
+  
+    <nav class="md-nav" aria-label="types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.types.FileHeader" class="md-nav__link">
+    FileHeader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.types.Packet" class="md-nav__link">
+    Packet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.types.PacketHeader" class="md-nav__link">
+    PacketHeader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.types.Reserved" class="md-nav__link">
+    Reserved
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.types.Version" class="md-nav__link">
+    Version
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simplepcap.enum" class="md-nav__link">
+    enum
+  </a>
+  
+    <nav class="md-nav" aria-label="enum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.enum.LinkType" class="md-nav__link">
+    LinkType
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    Exceptions
+  </a>
+  
+    <nav class="md-nav" aria-label="Exceptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.FileIsNotOpenError" class="md-nav__link">
+    FileIsNotOpenError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.IncorrectPacketSizeError" class="md-nav__link">
+    IncorrectPacketSizeError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.PcapFileError" class="md-nav__link">
+    PcapFileError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.PcapFileNotFoundError" class="md-nav__link">
+    PcapFileNotFoundError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.ReadAfterCloseError" class="md-nav__link">
+    ReadAfterCloseError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.SimplePcapError" class="md-nav__link">
+    SimplePcapError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.UnsupportedFileVersionError" class="md-nav__link">
+    UnsupportedFileVersionError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.WrongFileHeaderError" class="md-nav__link">
+    WrongFileHeaderError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.WrongPacketHeaderError" class="md-nav__link">
+    WrongPacketHeaderError
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-parser-implementations" class="md-nav__link">
+    Proposed Parser Implementations
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposed Parser Implementations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-parser" class="md-nav__link">
+    Default Parser
+  </a>
+  
+    <nav class="md-nav" aria-label="Default Parser">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parsers.default.DefaultParser" class="md-nav__link">
+    DefaultParser
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parsers.default.DefaultParserIterator" class="md-nav__link">
+    DefaultParserIterator
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#simplepcap.parser" class="md-nav__link">
+    parser
+  </a>
+  
+    <nav class="md-nav" aria-label="parser">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parser.Parser" class="md-nav__link">
+    Parser
+  </a>
+  
+    <nav class="md-nav" aria-label="Parser">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parser.Parser.__iter__" class="md-nav__link">
+    __iter__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parser.Parser.close" class="md-nav__link">
+    close()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parser.Parser.get_all_packets" class="md-nav__link">
+    get_all_packets()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parser.Parser.open" class="md-nav__link">
+    open()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parser.ParserIterator" class="md-nav__link">
+    ParserIterator
+  </a>
+  
+    <nav class="md-nav" aria-label="ParserIterator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parser.ParserIterator.__next__" class="md-nav__link">
+    __next__()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simplepcap.types" class="md-nav__link">
+    types
+  </a>
+  
+    <nav class="md-nav" aria-label="types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.types.FileHeader" class="md-nav__link">
+    FileHeader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.types.Packet" class="md-nav__link">
+    Packet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.types.PacketHeader" class="md-nav__link">
+    PacketHeader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.types.Reserved" class="md-nav__link">
+    Reserved
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.types.Version" class="md-nav__link">
+    Version
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simplepcap.enum" class="md-nav__link">
+    enum
+  </a>
+  
+    <nav class="md-nav" aria-label="enum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.enum.LinkType" class="md-nav__link">
+    LinkType
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    Exceptions
+  </a>
+  
+    <nav class="md-nav" aria-label="Exceptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.FileIsNotOpenError" class="md-nav__link">
+    FileIsNotOpenError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.IncorrectPacketSizeError" class="md-nav__link">
+    IncorrectPacketSizeError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.PcapFileError" class="md-nav__link">
+    PcapFileError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.PcapFileNotFoundError" class="md-nav__link">
+    PcapFileNotFoundError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.ReadAfterCloseError" class="md-nav__link">
+    ReadAfterCloseError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.SimplePcapError" class="md-nav__link">
+    SimplePcapError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.UnsupportedFileVersionError" class="md-nav__link">
+    UnsupportedFileVersionError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.WrongFileHeaderError" class="md-nav__link">
+    WrongFileHeaderError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.exceptions.WrongPacketHeaderError" class="md-nav__link">
+    WrongPacketHeaderError
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-parser-implementations" class="md-nav__link">
+    Proposed Parser Implementations
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposed Parser Implementations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-parser" class="md-nav__link">
+    Default Parser
+  </a>
+  
+    <nav class="md-nav" aria-label="Default Parser">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parsers.default.DefaultParser" class="md-nav__link">
+    DefaultParser
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplepcap.parsers.default.DefaultParserIterator" class="md-nav__link">
+    DefaultParserIterator
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="reference">Reference</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+
+<h2 id="simplepcap.parser" class="doc doc-heading">
+          <code>simplepcap.parser</code>
+
+
+</h2>
+
+  <div class="doc doc-contents first">
+  
+      <p>This module contains the abstract classes for parsers and parser iterators.</p>
+<p>The <code>SomeParser</code> is used to denote the implementation. You should replace it with the name of
+the parser you want to use.</p>
+<p>Main Idea of the Parser is to provide an easy way to iterate over the packets in a pcap file.
+To ensure safe opening and closing of the file use <a href="https://peps.python.org/pep-0343/">"with"</a> statement or
+call the <code>open()</code> and <code>close()</code> methods. (preferred way is to use <a href="https://peps.python.org/pep-0343/">"with"</a> statement)</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="simplepcap.parser.Parser" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">Parser</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="typing.Protocol">Protocol</span></code></p>
+
+  
+      <p>Abstract class for parsers.
+Parser is used to iterate over the packets in a pcap file.
+Parser supports multiple iterators over the same file. Each iterator has its own position in the file.</p>
+
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>file_path</code></td>
+          <td>
+                <code><span title="pathlib.Path">Path</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Path to the pcap file.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>file_header</code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="simplepcap.types.FileHeader" href="#simplepcap.types.FileHeader">FileHeader</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>File header.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>is_open</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>True if the file is open.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>itearators</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>List of iterators over the packets in the file.</p>
+<blockquote>
+<p>Note: When iterator raises <code>StopIteration</code> it is removed from the list.</p>
+</blockquote>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+<details class="example" open>
+  <summary>Example</summary>
+  <blockquote>
+<p>Note: Replace <code>SomeParser</code> with the name of the parser you want to use.</p>
+</blockquote>
+<ol>
+<li>
+<p>Recommended way to use the parser is to use <a href="https://peps.python.org/pep-0343/">"with"</a> statement.
+When you iterate over the parser it load the packets one by one from the file.
+    <div class="language-py highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">simplepcap.parsers</span> <span class="kn">import</span> <span class="n">SomeParser</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">with</span> <span class="n">SomeParser</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;file.pcap&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">parser</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">packet</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parser</span><span class="p">):</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">packet</span><span class="p">)</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Not recommended way to use the parser is to open and close the file manually.
+    <div class="language-py highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">simplepcap.parsers</span> <span class="kn">import</span> <span class="n">SomeParser</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">parser</span> <span class="o">=</span> <span class="n">SomeParser</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;file.pcap&quot;</span><span class="p">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">parser</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">parser</span><span class="p">:</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">parser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>You can also use the <code>get_all_packets()</code> method to get a list of all packets in the file.
+    <div class="language-py highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span> <span class="nn">simplepcap.parsers</span> <span class="kn">import</span> <span class="n">SomeParser</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">with</span> <span class="n">SomeParser</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;file.pcap&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">parser</span><span class="p">:</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">packets</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">get_all_packets</span><span class="p">()</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">packets</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Not recommended way to use the parser is to open and close the file manually.
+    <div class="language-py highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span> <span class="nn">simplepcap.parsers</span> <span class="kn">import</span> <span class="n">SomeParser</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">parser</span> <span class="o">=</span> <span class="n">SomeParser</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;file.pcap&quot;</span><span class="p">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">parser</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">packets</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">get_all_packets</span><span class="p">()</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">parser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">packets</span><span class="p">:</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Every iterator has its own position in the file.
+    <div class="language-py highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">simplepcap.parsers</span> <span class="kn">import</span> <span class="n">SomeParser</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">with</span> <span class="n">SomeParser</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;file.pcap&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">parser</span><span class="p">:</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">iter1</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">iter2</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">iter1</span><span class="p">))</span> <span class="c1"># packet1</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">iter1</span><span class="p">))</span> <span class="c1"># packet2</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">iter1</span><span class="p">))</span> <span class="c1"># packet3</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">iter2</span><span class="p">))</span> <span class="c1"># packet1</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">iter2</span><span class="p">))</span> <span class="c1"># packet2</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">iter1</span><span class="p">))</span> <span class="c1"># packet4</span>
+</span></code></pre></div></p>
+<blockquote>
+<p>Note: When iterator raises <code>StopIteration</code> it is removed from the list.</p>
+</blockquote>
+</li>
+</ol>
+</details>  
+      <p>Constructor method for Parser.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>file_path</code></td>
+          <td>
+                <code><span title="pathlib.Path">Path</span> | str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Path to the pcap file.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="simplepcap.exceptions.PcapFileNotFoundError" href="#simplepcap.exceptions.PcapFileNotFoundError">PcapFileNotFoundError</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>if the file does not exist.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="simplepcap.exceptions.WrongFileHeaderError" href="#simplepcap.exceptions.WrongFileHeaderError">WrongFileHeaderError</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>if the file header is invalid.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="simplepcap.exceptions.UnsupportedFileVersionError" href="#simplepcap.exceptions.UnsupportedFileVersionError">UnsupportedFileVersionError</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>if the file version is not supported.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="simplepcap.parser.Parser.__iter__" class="doc doc-heading">
+          <code class="highlight language-python"><span class="fm">__iter__</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return an iterator over the packets in the file.</p>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="simplepcap.exceptions.FileIsNotOpenError" href="#simplepcap.exceptions.FileIsNotOpenError">FileIsNotOpenError</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>if the file is not open.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="simplepcap.parser.ParserIterator" href="#simplepcap.parser.ParserIterator">ParserIterator</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Iterator over the packets in the file.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="simplepcap.parser.Parser.close" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">close</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Close the file. This method is not needed if the parser is used as a context manager.</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="simplepcap.parser.Parser.get_all_packets" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_all_packets</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return a list of all packet in the file. This method is not recommended for large files.</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="simplepcap.parser.Parser.open" class="doc doc-heading">
+          <code class="highlight language-python"><span class="nb">open</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Open the file. This method is not needed if the parser is used as a context manager.</p>
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="simplepcap.parser.ParserIterator" class="doc doc-heading">
+          <code>ParserIterator</code>
+
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="typing.Protocol">Protocol</span></code></p>
+
+  
+      <p>Abstract class for parser iterators. This class is used to iterate over the packets in a pcap file.</p>
+
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>position</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Current position in the file.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h4 id="simplepcap.parser.ParserIterator.__next__" class="doc doc-heading">
+          <code class="highlight language-python"><span class="fm">__next__</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the next packet in the file.</p>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="simplepcap.exceptions.WrongPacketHeaderError" href="#simplepcap.exceptions.WrongPacketHeaderError">WrongPacketHeaderError</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>if the packet header is invalid.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="simplepcap.exceptions.IncorrectPacketSizeError" href="#simplepcap.exceptions.IncorrectPacketSizeError">IncorrectPacketSizeError</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>if the packet size is incorrect.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="simplepcap.exceptions.ReadAfterCloseError" href="#simplepcap.exceptions.ReadAfterCloseError">ReadAfterCloseError</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>if the file is closed and you try to read a packet from it.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+                <code>StopIteration</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>if there are no more packets in the file.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-module">
+
+
+
+
+<h2 id="simplepcap.types" class="doc doc-heading">
+          <code>simplepcap.types</code>
+
+
+</h2>
+
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="simplepcap.types.FileHeader" class="doc doc-heading">
+          <code>FileHeader</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Pcap file header.</p>
+
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>magic</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>used to detect the file format itself and the byte ordering.
+The writing application writes <code>0xa1b2c3d4</code> with it's native byte ordering format into this field.
+The reading application will read either <code>0xa1b2c3d4</code> (identical) or <code>0xd4c3b2a1</code> (swapped).
+If the reading application reads the swapped <code>0xd4c3b2a1</code> value,
+it knows that all the following fields will have to be swapped too.</p>
+<p><a href="https://wiki.wireshark.org/Development/LibpcapFileFormat#global-header">Source</a></p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>version</code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="simplepcap.types.Version" href="#simplepcap.types.Version">Version</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>version of the pcap file format.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>reserved</code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="simplepcap.types.Reserved" href="#simplepcap.types.Reserved">Reserved</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>reserved bytes. Should be 0.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>snaplen</code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="simplepcap.types.Reserved" href="#simplepcap.types.Reserved">Reserved</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>the "snapshot length" for the capture (typically 65535 or even more, but might be limited by the user),
+see: incl_len vs. orig_len below.</p>
+<p><a href="https://wiki.wireshark.org/Development/LibpcapFileFormat#global-header">Source</a></p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>link_type</code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="simplepcap.enum.LinkType" href="#simplepcap.enum.LinkType">LinkType</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>link-layer header type, specifying the type of headers at the beginning of the packet
+(e.g. 1 for Ethernet, see tcpdump.org's link-layer header types page for details);
+this can be various types such as 802.11, 802.11 with various radio information,
+PPP, Token Ring, FDDI, etc.</p>
+<p><a href="https://wiki.wireshark.org/Development/LibpcapFileFormat#global-header">Source</a></p>
+<blockquote>
+<p>Note: <code>network</code> is a synonym for <code>link_type</code>.</p>
+</blockquote>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="simplepcap.types.Packet" class="doc doc-heading">
+          <code>Packet</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Packet.</p>
+
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>header</code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="simplepcap.types.PacketHeader" href="#simplepcap.types.PacketHeader">PacketHeader</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>packet header.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>data</code></td>
+          <td>
+                <code>bytes</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>packet data.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="simplepcap.types.PacketHeader" class="doc doc-heading">
+          <code>PacketHeader</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Packet record header.</p>
+
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>timestamp</code></td>
+          <td>
+                <code><span title="datetime.datetime">datetime</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Seconds and microseconds when this packet was captured.</p>
+<p><a href="https://wiki.wireshark.org/Development/LibpcapFileFormat#record-packet-header">Source</a></p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>captured_len</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>the number of bytes of packet data actually captured and saved in the file.
+This value should never become larger than orig_len or the snaplen value of the global header.</p>
+<p><a href="https://wiki.wireshark.org/Development/LibpcapFileFormat#record-packet-header">Source</a></p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>original_len</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>the length of the packet as it appeared on the network when it was captured.
+If incl_len and orig_len differ, the actually saved packet size was limited by snaplen.</p>
+<p><a href="https://wiki.wireshark.org/Development/LibpcapFileFormat#record-packet-header">Source</a></p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="simplepcap.types.Reserved" class="doc doc-heading">
+          <code>Reserved</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Reserved bytes. Should be 0.</p>
+
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>reserved1</code></td>
+          <td>
+                <code>bytes</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>not used - SHOULD be filled with 0 by pcap file writers, and MUST be ignored by pcap file readers.
+This value was documented by some older implementations as "gmt to local correction".
+Some older pcap file writers stored non-zero values in this field.</p>
+<p><a href="https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-4-5.12.1">Source</a></p>
+<blockquote>
+<p>Alternatively, the correction time in seconds between GMT (UTC) and the local
+timezone of the following packet header timestamps. Examples: If the timestamps are in GMT (UTC),
+thiszone is simply 0. If the timestamps are in Central European time (Amsterdam, Berlin, …) which is
+GMT + 1:00, thiszone must be -3600. In practice, time stamps are always in GMT, so thiszone is always 0.</p>
+<p><a href="https://wiki.wireshark.org/Development/LibpcapFileFormat#global-header">Source</a></p>
+</blockquote>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>reserved2</code></td>
+          <td>
+                <code>bytes</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>not used - SHOULD be filled with 0 by pcap file writers, and MUST be ignored by pcap file readers.
+This value was documented by some older implementations as "accuracy of timestamps".
+Some older pcap file writers stored non-zero values in this field.</p>
+<p><a href="https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-4-5.14.1">Source</a></p>
+<blockquote>
+<p>Alternatively, in theory, the accuracy of time stamps in the capture; in practice, all tools set it to 0.</p>
+<p><a href="https://wiki.wireshark.org/Development/LibpcapFileFormat#global-header">Source</a></p>
+</blockquote>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="simplepcap.types.Version" class="doc doc-heading">
+          <code>Version</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Version of the pcap file format.</p>
+
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>major</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>an unsigned value, giving the number of the current major version of the format.
+The value for the current version of the format is 2.
+This value should change if the format changes in such a way that code that reads the new format could not
+read the old format (i.e., code to read both formats would have to check the version number and use
+different code paths for the two formats) and code that reads the old format could not read the new format.</p>
+<p><a href="https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-4-5.8.1">Source</a></p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>minor</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>an unsigned value, giving the number of the current minor version of the format. The value is for the
+current version of the format is 4. This value should change if the format changes in such a way that code
+that reads the new format could read the old format without checking the version number but code that reads
+the old format could not read all files in the new format.</p>
+<p><a href="https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-4-5.10.1">Source</a></p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-module">
+
+
+
+
+<h2 id="simplepcap.enum" class="doc doc-heading">
+          <code>simplepcap.enum</code>
+
+
+</h2>
+
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h3 id="simplepcap.enum.LinkType" class="doc doc-heading">
+          <code>LinkType</code>
+
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code>int</code>, <code><span title="enum.Enum">Enum</span></code></p>
+
+  
+      <p>Link Type values.</p>
+<p>From <a href="https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#name-linktype-registry">www.ietf.org</a></p>
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="exceptions">Exceptions</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h6 id="simplepcap.exceptions.FileIsNotOpenError" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">FileIsNotOpenError</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h6>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="simplepcap.exceptions.PcapFileError" href="#simplepcap.exceptions.PcapFileError">PcapFileError</a></code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h7 id="simplepcap.exceptions.FileIsNotOpenError.file_path" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">file_path</span> <span class="o">=</span> <span class="n">file_path</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h7>
+
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h6 id="simplepcap.exceptions.IncorrectPacketSizeError" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">IncorrectPacketSizeError</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">packet_number</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h6>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="simplepcap.exceptions.PcapFileError" href="#simplepcap.exceptions.PcapFileError">PcapFileError</a></code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h7 id="simplepcap.exceptions.IncorrectPacketSizeError.file_path" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">file_path</span> <span class="o">=</span> <span class="n">file_path</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h7>
+
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h7 id="simplepcap.exceptions.IncorrectPacketSizeError.packet_number" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">packet_number</span> <span class="o">=</span> <span class="n">packet_number</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h7>
+
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h6 id="simplepcap.exceptions.PcapFileError" class="doc doc-heading">
+          <code>PcapFileError</code>
+
+
+</h6>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="simplepcap.exceptions.SimplePcapError" href="#simplepcap.exceptions.SimplePcapError">SimplePcapError</a></code></p>
+
+  
+      <p>Exception raised for errors in the input file.</p>
+
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h6 id="simplepcap.exceptions.PcapFileNotFoundError" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PcapFileNotFoundError</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h6>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="simplepcap.exceptions.PcapFileError" href="#simplepcap.exceptions.PcapFileError">PcapFileError</a></code>, <code>FileNotFoundError</code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h7 id="simplepcap.exceptions.PcapFileNotFoundError.file_path" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">file_path</span> <span class="o">=</span> <span class="n">file_path</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h7>
+
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h6 id="simplepcap.exceptions.ReadAfterCloseError" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ReadAfterCloseError</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">packet_number</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h6>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="simplepcap.exceptions.PcapFileError" href="#simplepcap.exceptions.PcapFileError">PcapFileError</a></code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h7 id="simplepcap.exceptions.ReadAfterCloseError.file_path" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">file_path</span> <span class="o">=</span> <span class="n">file_path</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h7>
+
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h7 id="simplepcap.exceptions.ReadAfterCloseError.packet_number" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">packet_number</span> <span class="o">=</span> <span class="n">packet_number</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h7>
+
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h6 id="simplepcap.exceptions.SimplePcapError" class="doc doc-heading">
+          <code>SimplePcapError</code>
+
+
+</h6>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code>Exception</code></p>
+
+  
+      <p>Base class for exceptions in this module.</p>
+
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h6 id="simplepcap.exceptions.UnsupportedFileVersionError" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">UnsupportedFileVersionError</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h6>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="simplepcap.exceptions.PcapFileError" href="#simplepcap.exceptions.PcapFileError">PcapFileError</a></code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h7 id="simplepcap.exceptions.UnsupportedFileVersionError.file_path" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">file_path</span> <span class="o">=</span> <span class="n">file_path</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h7>
+
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h6 id="simplepcap.exceptions.WrongFileHeaderError" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">WrongFileHeaderError</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h6>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="simplepcap.exceptions.PcapFileError" href="#simplepcap.exceptions.PcapFileError">PcapFileError</a></code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h7 id="simplepcap.exceptions.WrongFileHeaderError.file_path" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">file_path</span> <span class="o">=</span> <span class="n">file_path</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h7>
+
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h6 id="simplepcap.exceptions.WrongPacketHeaderError" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">WrongPacketHeaderError</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">packet_number</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h6>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="simplepcap.exceptions.PcapFileError" href="#simplepcap.exceptions.PcapFileError">PcapFileError</a></code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h7 id="simplepcap.exceptions.WrongPacketHeaderError.file_path" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">file_path</span> <span class="o">=</span> <span class="n">file_path</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h7>
+
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
+<h7 id="simplepcap.exceptions.WrongPacketHeaderError.packet_number" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">packet_number</span> <span class="o">=</span> <span class="n">packet_number</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h7>
+
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="proposed-parser-implementations">Proposed Parser Implementations</h2>
+<h3 id="default-parser">Default Parser</h3>
+<p>Fully Python based parser. This parser will be the default parser for the library.
+</p>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h4 id="simplepcap.parsers.default.DefaultParser" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">simplepcap</span><span class="o">.</span><span class="n">parsers</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">DefaultParser</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span></code>
+
+</h4>
+
+
+  <div class="doc doc-contents first">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="simplepcap.parser.Parser" href="#simplepcap.parser.Parser">Parser</a></code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h4 id="simplepcap.parsers.default.DefaultParserIterator" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">simplepcap</span><span class="o">.</span><span class="n">parsers</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">DefaultParserIterator</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">buffered_reader</span><span class="p">,</span> <span class="n">remove_iterator_callback</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h4>
+
+
+  <div class="doc doc-contents first">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="simplepcap.parser.ParserIterator" href="#simplepcap.parser.ParserIterator">ParserIterator</a></code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.dff1b7c8.min.js"></script>
+      
+    
+  </body>
+</html>
