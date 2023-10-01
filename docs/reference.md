@@ -9,10 +9,13 @@
 ::: simplepcap.enum
 
 
+## Exceptions
 ::: simplepcap.exceptions
     options:
+        show_root_heading: False
+        show_root_toc_entry: False
         show_if_no_docstring: True
-        heading_level: 5
+        heading_level: 6
 
 ## Proposed Parser Implementations
 ### Default Parser
