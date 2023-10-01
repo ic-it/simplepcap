@@ -6,6 +6,7 @@ import pytest
 
 from simplepcap import Packet
 from simplepcap.exceptions import IncorrectPacketSizeError, ReadAfterCloseError, WrongPacketHeaderError
+from simplepcap.parser import ParserIterator
 from simplepcap.parsers import DefaultParserIterator
 
 
@@ -56,6 +57,10 @@ def default_parser_iterator_with_callback(mock_buffered_reader, mock_remove_iter
         buffered_reader=mock_buffered_reader,
         remove_iterator_callback=mock_remove_iterator_callback,
     )
+
+
+def test_isinstance(default_parser_iterator):
+    assert isinstance(default_parser_iterator, ParserIterator)
 
 
 def test_default_parser_iterator_parses_multiple_packets(default_parser_iterator, mock_buffered_reader):

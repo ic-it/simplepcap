@@ -11,13 +11,15 @@ call the `open()` and `close()` methods. (preferred way is to use ["with"](https
 
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 from pathlib import Path
+from typing import Protocol, runtime_checkable
 
 from .types import Packet, FileHeader
 
 
-class ParserIterator(ABC):
+@runtime_checkable
+class ParserIterator(Protocol):
     """Abstract class for parser iterators. This class is used to iterate over the packets in a pcap file.
 
     Attributes:
@@ -47,7 +49,8 @@ class ParserIterator(ABC):
         raise NotImplementedError
 
 
-class Parser(ABC):
+@runtime_checkable
+class Parser(Protocol):
     """Abstract class for parsers.
     Parser is used to iterate over the packets in a pcap file.
     Parser supports multiple iterators over the same file. Each iterator has its own position in the file.
