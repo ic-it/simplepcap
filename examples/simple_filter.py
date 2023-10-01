@@ -3,7 +3,7 @@ from simplepcap.parsers import DefaultParser
 from simplepcap.types import Packet
 
 
-def filter_func(packet: Packet):
+def filter_func(packet: Packet) -> bool:
     return len(packet.data) < 100
 
 

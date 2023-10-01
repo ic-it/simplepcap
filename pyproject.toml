@@ -61,7 +61,7 @@ publish = [
 
 [project.urls]
 "Homepage" = "https://ic-it.github.io/simplepcap/"
-"Documentation" = "https://ic-it.github.io/simplepcap/"
+"Documentation" = "https://ic-it.github.io/simplepcap/reference/"
 "Bug Reports" = "https://github.com/ic-it/simplepcap/issues"
 "Source Code" = "https://github.com/ic-it/simplepcap"
 

@@ -10,6 +10,9 @@
 
 
 ::: simplepcap.exceptions
+    options:
+        show_if_no_docstring: True
+        heading_level: 5
 
 ## Proposed Parser Implementations
 ### Default Parser
