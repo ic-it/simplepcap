@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class LinkType(int, Enum):
-    """Link Type values
+    """Link Type values.
 
     From [www.ietf.org](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#name-linktype-registry)"""
 

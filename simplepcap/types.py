@@ -5,7 +5,7 @@ from simplepcap.enum import LinkType
 
 @dataclass(frozen=True)
 class Version:
-    """Version of the pcap file format
+    """Version of the pcap file format.
 
     Attributes:
         major:
@@ -31,7 +31,7 @@ class Version:
 
 @dataclass(frozen=True)
 class Reserved:
-    """Reserved bytes. Should be 0
+    """Reserved bytes. Should be 0.
 
     Attributes:
         reserved1:
@@ -56,7 +56,7 @@ class Reserved:
 
             [Source](https://www.ietf.org/archive/id/draft-gharris-opsawg-pcap-02.html#section-4-5.14.1)
 
-            > Alternatively, in theory, the accuracy of time stamps in the capture; in practice, all tools set it to 0
+            > Alternatively, in theory, the accuracy of time stamps in the capture; in practice, all tools set it to 0.
             >
             > [Source](https://wiki.wireshark.org/Development/LibpcapFileFormat#global-header)
     """
@@ -67,7 +67,7 @@ class Reserved:
 
 @dataclass(frozen=True)
 class FileHeader:
-    """Pcap file header
+    """Pcap file header.
 
     Attributes:
         magic:
@@ -79,12 +79,12 @@ class FileHeader:
 
             [Source](https://wiki.wireshark.org/Development/LibpcapFileFormat#global-header)
         version:
-            version of the pcap file format
+            version of the pcap file format.
         reserved:
-            reserved bytes. Should be 0
+            reserved bytes. Should be 0.
         snaplen:
             the "snapshot length" for the capture (typically 65535 or even more, but might be limited by the user),
-            see: incl_len vs. orig_len below
+            see: incl_len vs. orig_len below.
 
             [Source](https://wiki.wireshark.org/Development/LibpcapFileFormat#global-header)
         link_type:
@@ -95,7 +95,7 @@ class FileHeader:
 
             [Source](https://wiki.wireshark.org/Development/LibpcapFileFormat#global-header)
 
-            > Note: `network` is a synonym for `link_type`
+            > Note: `network` is a synonym for `link_type`.
     """
 
     magic: int
@@ -107,7 +107,7 @@ class FileHeader:
 
 @dataclass(frozen=True)
 class PacketHeader:
-    """Packet record header
+    """Packet record header.
 
     Attributes:
         timestamp:
@@ -133,13 +133,13 @@ class PacketHeader:
 
 @dataclass(frozen=True)
 class Packet:
-    """Packet
+    """Packet.
 
     Attributes:
         header:
-            packet header
+            packet header.
         data:
-            packet data
+            packet data.
     """
 
     header: PacketHeader
